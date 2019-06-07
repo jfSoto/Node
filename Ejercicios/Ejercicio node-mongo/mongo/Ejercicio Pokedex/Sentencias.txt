@@ -1,0 +1,27 @@
+Seleccionar todos los Pokémon:
+
+1 - De tipo fuego ("Fire") 
+	db.pokedex.find({ type : "Fire" }).pretty()
+
+2 - De la segunda generación (campo id entre 152 y 251 incluídos).
+	db.pokedex.find({ $and : [{ id : { $gte : 152}}, { id: { $lte : 251 }}]}).pretty()
+
+3 - Cuya velocidad (campo "Speed") es 100
+	db.pokedex.find({ "base.Speed" : 100 }).pretty()
+
+4 - Que sean sólo de tipo agua ("Water")
+	db.pokedex.find({ "type" : ["Water"]}).pretty()
+
+5 - Cuyo nombre en inglés empiece por "Vi".
+	db.pokedex.find({ "name.english" : /^Vi/}).pretty()
+
+6 - De tipo fantasma ("Ghost") y con HP más de 60.
+	db.pokedex.find({ "type" : "Ghost", "base.HP" : { $gt : 60 }}).pretty()
+
+7 - De velocidad más de 100, o de ataque entre 70 y 90.
+	db.pokedex.find({$or : [{"base.Speed" : {$gt:100}}, {$and : [{"base.Attack" : {$gte : 70}}, {"base.Attack" : {$lte : 90}}]}]}).pretty()
+
+Modificar todos los Pokémon:
+
+1 - De tipo volador ("Flying"). Poner nivel de defensa ("Defense") igual a 200.
+	db.pokedex.update({ "type" : "Flying" }, { $set : { "base.Defense" : 200 }}, { multi : true })
