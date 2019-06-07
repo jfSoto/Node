@@ -1,0 +1,16 @@
+1 - Mostrar todos los personajes cuyo atributo "species" tenga como valor "human".
+	
+	db.harryPotter.find({species:"human"}).pretty()
+
+2 - Mostrar todos los personajes cuyo atributo "yearOfBirth" sea anterior a 1979.
+	
+	db.harryPotter.find({yearOfBirth:{$lt:1979}}).pretty()
+
+3 - Mostrar todos los personajes cuyo atributo "wood" de la propiedad "wand" sea "holly".
+
+	db.harryPotter.find({"wand.wood":"holly"}).pretty()
+
+4 - Mostrar todos los personajes que estén vivos (propiedad "alive" igual a true) 
+    y además sean estudiantes (propiedad "hogwartsStudent" igual a true).
+
+	db.harryPotter.find({"alive":true, "hogwartsStudent":true}).pretty()
